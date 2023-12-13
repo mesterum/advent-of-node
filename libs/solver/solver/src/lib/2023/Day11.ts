@@ -3,7 +3,7 @@ import { input, output, part } from '../solver';
 const iter = input.split('\n'),
   galaxyReX = /#/g
 
-if (!iter.at(-1) ?? ''.length) iter.length--
+if (!iter.at(-1)) iter.length--
 const horizontalCount = new Uint8ClampedArray(iter[0].length),
   verticalCount = Uint8ClampedArray.from(iter, (line) => {
     let count = 0
