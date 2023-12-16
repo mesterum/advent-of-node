@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { input, output, part } from '../solver';
 
-type HandType = typeof typeOfHandRank extends (infer T)[] ? T : never;
+type HandType = (typeof typeOfHandRank)[number]
 const iter = input.split('\n'),
   handReX = /^(?<hand>[AKQJT2-9]{5}) (?<bid>\d+)/,
   rank = 'AKQJT98765432',
@@ -15,7 +15,7 @@ const iter = input.split('\n'),
     ['high_card'],
   ] as const,
   typeOfHandRank = typeOfHand.flatMap(v => v.toReversed()),
-  handsPerType = Object.fromEntries(typeOfHandRank.map(v => [v, [] as unknown])) as 
+  handsPerType = Object.fromEntries(typeOfHandRank.map(v => [v, [] as unknown])) as
     Record<HandType, Record<'handValue' | 'bid', number>[]>;
 
 for (const line of iter) {
